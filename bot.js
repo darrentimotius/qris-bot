@@ -26,7 +26,9 @@ bot.onText(/^[0-9]+$/, async (msg) => {
     const qrBuffer = await qrcode.toBuffer(qrisDinamisString, { margin: 2 });
     const caption = `QRIS Dinamis untuk pembayaran Rp ${nominal}`;
     
-    await bot.sendPhoto(chatId, qrBuffer, { caption: caption });
+    await bot.sendPhoto(chatId, qrBuffer, { caption: caption }, {
+        filename: `qris_dinamis_${nominal}.png`
+    });
     
   } catch (error) {
     console.error("Error membuat atau mengirim QR:", error.message);
